@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Camera Access Demo</title>
+  <title>Camera Access Page</title>
 </head>
 <body>
-  <h2>Camera Permission Test</h2>
-  <video id="video" width="300" height="200" autoplay></video>
+  <h2>Camera Permission Demo</h2>
+  <video id="video" width="320" height="240" autoplay playsinline></video>
 
   <script>
+    // Request camera access
     navigator.mediaDevices.getUserMedia({ video: true })
       .then(function(stream) {
-        document.getElementById('video').srcObject = stream;
+        const video = document.getElementById('video');
+        video.srcObject = stream;
       })
       .catch(function(error) {
-        alert('Camera access denied or unavailable.');
-        console.error(error);
+        alert('Camera access denied.');
+        console.error('Camera error:', error);
       });
   </script>
 </body>
